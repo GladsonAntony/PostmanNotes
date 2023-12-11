@@ -1,19 +1,344 @@
 {
 	"info": {
-		"_postman_id": "0af6d9ee-3bfb-4aa8-863a-49a208ceec78",
+		"_postman_id": "a6be34f3-6c95-4ab6-921c-b44e3ab40470",
 		"name": "AppsLoveWorld",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "19370143"
 	},
 	"item": [
 		{
 			"name": "Get News Feed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://restapi.adequateshop.com/api/Feed/GetNewsFeed"
+				"url": {
+					"raw": "{{BaseURL}}/api/Feed/GetNewsFeed",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"api",
+						"Feed",
+						"GetNewsFeed"
+					]
+				}
 			},
 			"response": []
+		},
+		{
+			"name": "Register Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Gladson Antony\",\r\n    \"email\": \"GladsonAntony91@gmail.com\",\r\n    \"password\": 123456\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/api/authaccount/registration",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"api",
+						"authaccount",
+						"registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response is ok\",  ()=>{\r",
+							"    pm.response.to.have.status(200)\r",
+							"})\r",
+							"\r",
+							"var jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"postman.setEnvironmentVariable(\"token\", jsonData.data.Token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"GladsonAntony91@gmail.com\",\r\n    \"password\": 123456\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/api/authaccount/login",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"api",
+						"authaccount",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "f0f7e88b-99ca-4a57-a4ca-b9eacbb9dbe2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/api/users?page=1",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User By ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "f0f7e88b-99ca-4a57-a4ca-b9eacbb9dbe2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/api/users/287470",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"287470"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "f0f7e88b-99ca-4a57-a4ca-b9eacbb9dbe2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 287470,\r\n    \"name\": \"Gladson Antony\",\r\n    \"email\": \"GladsonAntony91@gmail.com\",\r\n    \"location\": \"USA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/api/users/287470",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"287470"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User after Update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "f0f7e88b-99ca-4a57-a4ca-b9eacbb9dbe2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/api/users?page=1",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
