@@ -1,0 +1,19 @@
+{
+	"info": {
+		"_postman_id": "0af6d9ee-3bfb-4aa8-863a-49a208ceec78",
+		"name": "AppsLoveWorld",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19370143"
+	},
+	"item": [
+		{
+			"name": "Get News Feed",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://restapi.adequateshop.com/api/Feed/GetNewsFeed"
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,18 @@
+// Request
+{
+    "name": "Gladson Antony",
+    "email": "GladsonAntony91@gmail.com",
+    "password": 123456
+}
+
+// Response
+{
+    "code": 0,
+    "message": "success",
+    "data": {
+        "Id": 287470,
+        "Name": "Gladson Antony",
+        "Email": "GladsonAntony91@gmail.com",
+        "Token": "424112ee-f3d6-42d9-8d55-6a1c4749b09c"
+    }
+}
