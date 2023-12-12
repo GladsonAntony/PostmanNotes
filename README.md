@@ -137,6 +137,8 @@ Output Response:
 msg : book is successfully deleted”
  
 }
+```
+
 Automation Scenarios to Test Library API -
 
 Verify if API responses returns Success Codes with Proper Assertions
@@ -214,21 +216,24 @@ Soap End Point example
 https://www.dataaccess.com/webservicesserver/NumberConversion.wso
 
 
+---
 
-What is Newman?
+## Newman
 
-•	Newman is a command line Collection Runner for Postman. 
-•	It allows you to run and test a Postman Collection directly from the command line.
-•	Using Newman, you can easily integrate it with your continuous integration servers and build systems.
+* Newman is a command line Collection Runner for Postman. 
+* It allows you to run and test a Postman Collection directly from the command line.
+* Using Newman, you can easily integrate it with your continuous integration servers and build systems.
+* Newman is built on Node.js. To run Newman, Install Node.js as prerequisite.
+* After Node.js install, Install Newman from npm globally on your system, which allows you to run it from anywhere.
 
-•	Newman is built on Node.js. To run Newman, Install Node.js as prerequisite.
-•	After Node.js install, Install Newman from npm globally on your system, which allows you to run it from anywhere.
+```cmd
 npm install -g newman
+```
+* How to run collection from Newman?
 
-•	How to run collection from Newman?
-	$ newman run <CollectionFile>
-
-•	Learn about Newman Configuration options
+```cmd
+newman run <CollectionFile>
+```
 
 •	Generate HTML reports for Test execution results with newman - htmlextra plugin
 https://www.npmjs.com/package/newman-reporter-htmlextra
@@ -249,3 +254,18 @@ Integrate the Automation Tests with Jenkins for CI/CD Implementation
 Prepare neat HTML reports for the Postman API Test Automation results
 Understand how to collaborate as a Team by forking the existing Project – Creating branches- Creating Pull requests – Merging 
 
+---
+
+## Report Generation
+
+### Package to Install
+
+```cmd
+npm install -g newman-reporter-htmlextra
+```
+
+### Command to Execute
+
+```cmd
+newman run .\AppsLoveWorld.postman_collection.json -e .\UAT.postman_environment.json -r htmlextra --reporter-html-export htmlreport.html
+```

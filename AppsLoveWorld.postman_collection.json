@@ -58,7 +58,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Gladson Antony\",\r\n    \"email\": \"GladsonAntony91@gmail.com\",\r\n    \"password\": 123456\r\n}",
+					"raw": "{\r\n    \"name\": \"{{Name}}\",\r\n    \"email\": \"{{Email}}\",\r\n    \"password\": \"{{Password}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -103,7 +103,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"GladsonAntony91@gmail.com\",\r\n    \"password\": 123456\r\n}",
+					"raw": "{\r\n    \"email\": \"{{Email}}\",\r\n    \"password\": \"{{Password}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -145,7 +145,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "f0f7e88b-99ca-4a57-a4ca-b9eacbb9dbe2",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -192,7 +192,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "f0f7e88b-99ca-4a57-a4ca-b9eacbb9dbe2",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -200,14 +200,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{BaseURL}}/api/users/287470",
+					"raw": "{{BaseURL}}/api/users/{{MyID}}",
 					"host": [
 						"{{BaseURL}}"
 					],
 					"path": [
 						"api",
 						"users",
-						"287470"
+						"{{MyID}}"
 					]
 				}
 			},
@@ -220,7 +220,7 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							""
+							"postman.setNextRequest('Get User after Update')"
 						],
 						"type": "text/javascript"
 					}
@@ -229,9 +229,11 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
+							"\r",
+							"\r",
+							"// pm.test(\"Status code is 200\", function () {\r",
+							"//     pm.response.to.have.status(200);\r",
+							"// });"
 						],
 						"type": "text/javascript"
 					}
@@ -243,7 +245,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "f0f7e88b-99ca-4a57-a4ca-b9eacbb9dbe2",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -252,7 +254,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 287470,\r\n    \"name\": \"Gladson Antony\",\r\n    \"email\": \"GladsonAntony91@gmail.com\",\r\n    \"location\": \"USA\"\r\n}",
+					"raw": "{\r\n    \"id\": \"{{MyID}}\",\r\n    \"name\": \"{{Name}}\",\r\n    \"email\": \"{{Email}}\",\r\n    \"location\": \"USA\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -260,14 +262,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{BaseURL}}/api/users/287470",
+					"raw": "{{BaseURL}}/api/users/{{MyID}}",
 					"host": [
 						"{{BaseURL}}"
 					],
 					"path": [
 						"api",
 						"users",
-						"287470"
+						"{{MyID}}"
 					]
 				}
 			},
@@ -286,6 +288,15 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
@@ -294,7 +305,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "f0f7e88b-99ca-4a57-a4ca-b9eacbb9dbe2",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -302,19 +313,56 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{BaseURL}}/api/users?page=1",
+					"raw": "{{BaseURL}}/api/users/{{MyID}}",
 					"host": [
 						"{{BaseURL}}"
 					],
 					"path": [
 						"api",
-						"users"
-					],
-					"query": [
+						"users",
+						"{{MyID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
 						{
-							"key": "page",
-							"value": "1"
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
 						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/api/users/{{MyID}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{MyID}}"
 					]
 				}
 			},
